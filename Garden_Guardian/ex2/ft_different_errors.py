@@ -1,17 +1,17 @@
-def garden_operations(operation_number: int):
+def garden_operations(operation_number: int) -> None:
     if operation_number == 0:
-        return int("abc")
+        int("abc")
     elif operation_number == 1:
-        return 42 / 0
+        42 / 0
     elif operation_number == 2:
-        return open("./test.txt", "r")
+        open("./test.txt", "r")
     elif operation_number == 3:
-        return "abc" + 42
+        "abc" + 42
     else:
         return
 
 
-def test_error_types():
+def test_error_types() -> None:
     print("=== Garden Error Types Demo ===")
     for x in range(5):
         print(f"Testing operation {x}...")

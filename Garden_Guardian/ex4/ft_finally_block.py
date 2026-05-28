@@ -19,7 +19,7 @@ def water_plant(plant_name: str) -> None:
 
 
 def test_watering_system() -> None:
-    plant_names: list = ["Tomato", "Lettuce", "Carrot"]
+    plant_names: list[str] = ["Tomato", "Lettuce", "Carrot"]
     print("=== Garden Watering System ===\n")
     print("Testing valid plants...")
     print("Opening watering system")

@@ -3,7 +3,7 @@ class Plant:
     height: float
     age_days: int
 
-    def __init__(self, name, height, age_days) -> None:
+    def __init__(self, name: str, height: float, age_days: int) -> None:
         self.name, self.height, self.age_days = name, height, age_days
 
     def grow(self) -> None:
