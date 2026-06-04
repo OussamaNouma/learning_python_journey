@@ -17,15 +17,16 @@ if __name__ == "__main__":
                   "ft_score_analytics.py <score1> <score2> ...")
 
         else:
-            sum: int = sum(scores)
-            max: int = max(scores)
-            min: int = min(scores)
+            my_sum: int = sum(scores)
+            my_max: int = max(scores)
+            my_min: int = min(scores)
             print(f"Scores processed: {scores}")
-            print(f"Total score: {sum}")
-            print(f"Average score: {sum/scores_len}")
-            print(f"High score: {max}")
-            print(f"Low Score: {min}")
-            print(f"Score range {max - min}")
+            print(f"Total players: {scores_len}")
+            print(f"Total score: {my_sum}")
+            print(f"Average score: {my_sum/scores_len}")
+            print(f"High score: {my_max}")
+            print(f"Low score: {my_min}")
+            print(f"Score range: {my_max - my_min}")
     else:
         print("No scores provided. Usage: python3 "
               "ft_score_analytics.py <score1> <score2> ...")
