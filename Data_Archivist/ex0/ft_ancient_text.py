@@ -9,7 +9,7 @@ if __name__ == "__main__":
         print("=== Cyber Archives Recovery ===")
         print(f"Accessing file ’{sys.argv[1]}’")
         f: typing.IO[str] = open(sys.argv[1], "r")
-        to_print = f.read()
+        to_print: str = f.read()
         print(f"---\n{to_print}\n---")
         f.close()
         print(f"File ’{sys.argv[1]}’ closed.")

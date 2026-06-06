@@ -16,6 +16,8 @@ if __name__ == "__main__":
         print(f"File ’{sys.argv[1]}’ closed.")
         transformed: list[str] = [line + "#" for line in to_print.splitlines()]
         new_data: str = "\n".join(transformed)
+        if to_print.endswith("\n"):
+            new_data += "\n#"
         print(f"Transform data:\n---\n{new_data}\n---")
         f_name = input("Enter new file name (or empty): ")
         if not f_name:
