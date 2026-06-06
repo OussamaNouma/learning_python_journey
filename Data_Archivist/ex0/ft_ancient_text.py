@@ -15,6 +15,6 @@ if __name__ == "__main__":
         print(f"File ’{sys.argv[1]}’ closed.")
     except (FileNotFoundError, PermissionError, ValueError) as err:
         if len(sys.argv) == 1:
-            print("Usage: ft_ancient_text.py <file>")
+            print(err)
         else:
             print(f"Error opening file ’{sys.argv[1]}’: {err}")
