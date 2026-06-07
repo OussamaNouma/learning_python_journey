@@ -5,7 +5,7 @@ import typing
 if __name__ == "__main__":
     f_name: str = ""
     try:
-        if len(sys.argv) == 1 or len(sys.argv) > 2:
+        if len(sys.argv) != 2:
             raise ValueError("Usage: ft_ancient_text.py <file>")
         print("=== Cyber Archives Recovery & Preservation ===")
         print(f"Accessing file ’{sys.argv[1]}’")
@@ -16,6 +16,9 @@ if __name__ == "__main__":
                                     f"’{sys.argv[1]}’: {err}")
         except PermissionError as err:
             raise PermissionError(f"Error opening file ’{sys.argv[1]}’: {err}")
+        except IsADirectoryError as err:
+            raise IsADirectoryError(f"Error opening file "
+                                    f"’{sys.argv[1]}’: {err}")
         to_print: str = f.read()
         print(f"---\n{to_print}\n---")
         f.close()
@@ -37,9 +40,18 @@ if __name__ == "__main__":
             raise FileNotFoundError(f"Error opening file ’{f_name}’: {err}")
         except PermissionError as err:
             raise PermissionError(f"Error opening file ’{f_name}’: {err}")
+        except IsADirectoryError as err:
+            raise IsADirectoryError(f"Error opening file ’{f_name}’: {err}")
         new_f.write(new_data)
         print(f"Data saved in file {f_name}.")
         new_f.close()
         print(f"File ’{f_name}’ closed.")
-    except (FileNotFoundError, PermissionError, ValueError) as err:
+    except (
+        FileNotFoundError,
+        PermissionError,
+        ValueError,
+        IsADirectoryError
+            ) as err:
         sys.stderr.write(f"[STDERR] {err}\n")
+        if f_name:
+            print("Data not saved.")

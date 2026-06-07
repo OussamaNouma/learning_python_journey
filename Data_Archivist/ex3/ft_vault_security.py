@@ -13,9 +13,7 @@ def secure_archive(filename: str, auth: str = 'r', content: str = "")\
                 return (True, "Content successfully written to file")
         else:
             return (False, "Wrong parameter you can only read or write")
-    except PermissionError as err:
-        return (False, str(err))
-    except FileNotFoundError as err:
+    except (PermissionError, FileNotFoundError, IsADirectoryError) as err:
         return (False, str(err))
 
 
