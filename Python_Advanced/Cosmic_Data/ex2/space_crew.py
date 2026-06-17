@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 from pydantic import BaseModel, Field, model_validator, ValidationError
 from datetime import datetime
+from typing import Any
 from typing_extensions import Self
 from enum import Enum
-from space_missions import SPACE_MISSIONS
+from space_missions import SPACE_MISSIONS  # type: ignore
 
 
 class Rank(str, Enum):
@@ -65,8 +66,7 @@ class SpaceMission(BaseModel):
 
 
 if __name__ == "__main__":
-    mission: SpaceMission = SpaceMission(**SPACE_MISSIONS[0])
-    print(mission)
+    mission: SpaceMission = SpaceMission.model_validate(SPACE_MISSIONS[0])
     print(f"""Space Mission Crew Validation
 =========================================
 Valid mission created:
@@ -79,3 +79,18 @@ Crew size: {len(mission.crew)}
 """)
     for x in mission.crew:
         print(f"{x.name} ({x.rank.value}) - {x.specialization}")
+    print("""========================================
+Expected validation error:
+""", end='')
+    invalid: dict[str, Any] = SPACE_MISSIONS[0].copy()
+    invalid['mission_id'] = "testing"
+    invalid['crew'][0]['is_active'] = False
+    for x in invalid['crew']:
+        x['rank'] = "cadet"
+        x['years_experience'] = 2
+    try:
+        mission_bis: SpaceMission = SpaceMission.model_validate(invalid)
+    except ValidationError as err:
+        for n in err.errors():
+            for msg in n['ctx']['error'].args[0]:
+                print(msg)
