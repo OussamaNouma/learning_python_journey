@@ -5,11 +5,11 @@ from typing_extensions import Self
 from enum import Enum
 
 
-class ContactType(Enum):
-    RADIO = 1
-    VISUAL = 2
-    PHYSICAL = 3
-    TELEPATHIC = 4
+class ContactType(str, Enum):
+    RADIO = "radio"
+    VISUAL = "visual"
+    PHYSICAL = "physical"
+    TELEPATHIC = "telepathic"
 
 
 class AlienContact(BaseModel):
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     report: AlienContact = AlienContact(
         contact_id="AC_2024_001",
         timestamp=datetime.fromisoformat("2090-12-16T12:44:32"),
-        contact_type=ContactType.TELEPATHIC,
+        contact_type="telepathic",
         location="Firelink shrine",
         signal_strength=7.5,
         duration_minutes=10,
@@ -63,7 +63,7 @@ if __name__ == "__main__":
 ======================================
 Valid contact report:
 ID: {report.contact_id}
-Type: {report.contact_type.name.lower()}
+Type: {report.contact_type.value}
 Location: {report.location}
 Timestamp: {report.timestamp}
 Signal: {report.signal_strength}/10
@@ -78,7 +78,7 @@ Expected validation error:
         report_bis: AlienContact = AlienContact(
             contact_id="HC_2024_001",
             timestamp=datetime.fromisoformat("2090-12-16T12:44:32"),
-            contact_type=ContactType.PHYSICAL,
+            contact_type="physical",
             location="Firelink shrine",
             signal_strength=7.5,
             duration_minutes=10,
