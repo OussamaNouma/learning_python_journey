@@ -52,7 +52,7 @@ if __name__ == "__main__":
     report: AlienContact = AlienContact(
         contact_id="AC_2024_001",
         timestamp=datetime.fromisoformat("2090-12-16T12:44:32"),
-        contact_type="telepathic",
+        contact_type=ContactType.TELEPATHIC,
         location="Firelink shrine",
         signal_strength=7.5,
         duration_minutes=10,
@@ -78,7 +78,7 @@ Expected validation error:
         report_bis: AlienContact = AlienContact(
             contact_id="HC_2024_001",
             timestamp=datetime.fromisoformat("2090-12-16T12:44:32"),
-            contact_type="physical",
+            contact_type=ContactType.PHYSICAL,
             location="Firelink shrine",
             signal_strength=7.5,
             duration_minutes=10,
